@@ -9,10 +9,12 @@ import { createStore, combineReducers, applyMiddleware } from 'redux';
 import ReduxThunk from 'redux-thunk';
 import { tasksReducer } from './store/reducers/task';
 import { Provider } from 'react-redux';
+import { uiDataReducer } from './store/reducers/ui-data';
 
 const store = createStore(
   combineReducers({
     tasks: tasksReducer,
+    showAddTask: uiDataReducer,
   }),
   applyMiddleware(ReduxThunk)
 );
