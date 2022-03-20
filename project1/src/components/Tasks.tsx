@@ -13,6 +13,6 @@ export const Tasks = () => {
   }, []);
 
   return (
-    <>{tasks?.length > 0 ? tasks.map((task) => <Task key={task.id} task={task} />) : 'no tasks'}</>
+    <>{tasks?.length > 0 ? tasks.map((task) => <Task key={task.id} task={task} />) : 'No Tasks'}</>
   );
 };

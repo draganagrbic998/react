@@ -11,9 +11,7 @@ export const AddTask = () => {
     reminder: false,
   });
   const dispatch = useDispatch();
-  const onSubmit = (e: Event) => {
-    e.preventDefault();
-
+  const onSubmit = () => {
     if (!task.text.trim()) {
       alert('Please enter text!');
       return;
@@ -29,13 +27,12 @@ export const AddTask = () => {
   };
 
   return (
-    <form className="add-form">
+    <>
       <div className="form-group">
         <label>Task</label>
         <input
           value={task.text}
           onChange={(e) => setTask({ ...task, text: e.target.value })}
-          type="text"
           className="form-control"
           placeholder="Task"
         />
@@ -45,7 +42,6 @@ export const AddTask = () => {
         <input
           value={task.day}
           onChange={(e) => setTask({ ...task, day: e.target.value })}
-          type="text"
           className="form-control"
           placeholder="Task"
         />
@@ -60,7 +56,7 @@ export const AddTask = () => {
         />
       </div>
 
-      <input type="submit" value="Save" onClick={onSubmit.bind(null)} />
-    </form>
+      <button onClick={onSubmit}>Save</button>
+    </>
   );
 };

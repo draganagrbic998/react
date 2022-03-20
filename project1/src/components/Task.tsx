@@ -16,8 +16,8 @@ export const Task = (props: { task: TaskModel }) => {
       <h3>
         {props.task.text}
         <FaTimes
-          onClick={() => dispatch(deleteTask(props.task.id))}
           style={{ color: 'red', cursor: 'pointer' }}
+          onClick={() => dispatch(deleteTask(props.task.id))}
         />
       </h3>
       <p>{props.task.day}</p>

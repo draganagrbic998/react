@@ -1,10 +1,11 @@
 import { Link } from 'react-router-dom';
+import { RouteEnum } from '../constants/router';
 
 export const About = () => {
   return (
-    <div>
-      <h4>Version 1.0.0</h4>
-      <Link to="/">Back</Link>
-    </div>
+    <>
+      <div>jkldjsalkdjas dsaldsajdklsaj dksaljd sakljd sakljd askljdklsaj dlkasjdla</div>
+      <Link to={RouteEnum.HOME}>BACK</Link>
+    </>
   );
 };
