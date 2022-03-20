@@ -4,10 +4,26 @@ import './index.scss';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import 'bootstrap/dist/css/bootstrap.css';
+import { BrowserRouter } from 'react-router-dom';
+import { createStore, combineReducers, applyMiddleware } from 'redux';
+import ReduxThunk from 'redux-thunk';
+import { tasksReducer } from './store/reducers/task';
+import { Provider } from 'react-redux';
+
+const store = createStore(
+  combineReducers({
+    tasks: tasksReducer,
+  }),
+  applyMiddleware(ReduxThunk)
+);
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <Provider store={store}>
+      <BrowserRouter>
+        <App />
+      </BrowserRouter>
+    </Provider>
   </React.StrictMode>,
   document.getElementById('root')
 );

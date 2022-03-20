@@ -1,23 +1,18 @@
-import { Task as TaskModel } from '../models/task';
+import { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { readTasks } from '../store/actions/tasks';
+import { RootReducer } from '../store/root-reducer';
 import { Task } from './Task';
 
-export const Tasks = (props: {
-  tasks: TaskModel[];
-  toggleReminter: (id: number) => void;
-  deleteTask: (id: number) => void;
-}) => {
+export const Tasks = () => {
+  const tasks = useSelector((state) => (state as RootReducer).tasks.tasks);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(readTasks());
+  }, []);
+
   return (
-    <>
-      {props.tasks?.length > 0
-        ? props.tasks.map((task) => (
-            <Task
-              toggleReminter={props.toggleReminter}
-              key={task.id}
-              task={task}
-              deleteTask={props.deleteTask}
-            />
-          ))
-        : 'no tasks'}
-    </>
+    <>{tasks?.length > 0 ? tasks.map((task) => <Task key={task.id} task={task} />) : 'no tasks'}</>
   );
 };

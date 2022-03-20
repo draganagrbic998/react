@@ -1,20 +1,22 @@
 import { Task as TaskModel } from '../models/task';
 import { FaTimes } from 'react-icons/fa';
+import { useDispatch } from 'react-redux';
+import { deleteTask, updateTask } from '../store/actions/tasks';
 
-export const Task = (props: {
-  task: TaskModel;
-  toggleReminter: (id: number) => void;
-  deleteTask: (id: number) => void;
-}) => {
+export const Task = (props: { task: TaskModel }) => {
+  const dispatch = useDispatch();
+
   return (
     <div
       style={{ backgroundColor: props.task.reminder ? 'red' : '' }}
-      onDoubleClick={props.toggleReminter.bind(null, props.task.id)}
+      onDoubleClick={() =>
+        dispatch(updateTask(props.task.id, { ...props.task, reminder: !props.task.reminder }))
+      }
     >
       <h3>
         {props.task.text}
         <FaTimes
-          onClick={props.deleteTask.bind(null, props.task.id)}
+          onClick={() => dispatch(deleteTask(props.task.id))}
           style={{ color: 'red', cursor: 'pointer' }}
         />
       </h3>

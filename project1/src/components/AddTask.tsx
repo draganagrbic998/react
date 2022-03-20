@@ -1,13 +1,16 @@
 import { useState } from 'react';
+import { useDispatch } from 'react-redux';
 import { Task } from '../models/task';
+import { createTask } from '../store/actions/tasks';
 
-export const AddTask = (props: { addTask: (task: Task) => void }) => {
+export const AddTask = () => {
   const [task, setTask] = useState<Task>({
     id: undefined,
     text: '',
     day: '',
     reminder: false,
   });
+  const dispatch = useDispatch();
   const onSubmit = (e: Event) => {
     e.preventDefault();
 
@@ -21,7 +24,7 @@ export const AddTask = (props: { addTask: (task: Task) => void }) => {
       return;
     }
 
-    props.addTask(task);
+    dispatch(createTask(task));
     setTask({ id: undefined, text: '', day: '', reminder: false });
   };
 
