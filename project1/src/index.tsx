@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Suspense } from 'react';
 import ReactDOM from 'react-dom';
 import './index.scss';
 import App from './App';
@@ -10,6 +10,7 @@ import ReduxThunk from 'redux-thunk';
 import { tasksReducer } from './store/reducers/task';
 import { Provider } from 'react-redux';
 import { uiReducer } from './store/reducers/ui-data';
+import './i18n';
 
 const store = createStore(
   combineReducers({
@@ -23,7 +24,9 @@ ReactDOM.render(
   <React.StrictMode>
     <Provider store={store}>
       <BrowserRouter>
-        <App />
+        <Suspense fallback={<div>Loading...</div>}>
+          <App />
+        </Suspense>
       </BrowserRouter>
     </Provider>
   </React.StrictMode>,

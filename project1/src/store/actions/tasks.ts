@@ -1,7 +1,7 @@
 import axios from "axios";
 import { Task } from "../../models/task";
 
-const API_URL = 'http://localhost:5000/tasks';
+const API_URL = `${process.env.REACT_APP_API_URL}/tasks`;
 
 export enum TaskAction {
     READ_TASKS = "read-tasks",
